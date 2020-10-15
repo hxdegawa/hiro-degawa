@@ -1,0 +1,59 @@
+body,
+html {
+  margin: 0;
+  background-color: $color-white;
+}
+
+*:not(.material-icons) {
+  text-transform: capitalize;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+  font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: unset;
+  color: $color-pureblack;
+}
+
+ul {
+  padding: unset;
+  list-style: none;
+  color: $color-pureblack;
+
+  li {
+    &::before {
+      content: '-';
+      font-size: 12px;
+      margin-right: 5px;
+    }
+  }
+}
+
+p {
+  font-weight: normal;
+  color: $color-gray;
+}
+
+a {
+  text-decoration: none;
+  color: $color-pureblack;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
