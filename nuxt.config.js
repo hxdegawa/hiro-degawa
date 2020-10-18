@@ -1,4 +1,5 @@
 import { config } from 'dotenv'
+import { GraphQLClient, gql } from 'graphql-request'
 
 config()
 
@@ -112,6 +113,39 @@ export default {
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     generate: false,
+    async routes() {
+      const graphcmsClient = new GraphQLClient(process.env.CMS_URL)
+
+      const { works } = await graphcmsClient.request(
+        gql`
+          {
+            works(orderBy: date_DESC) {
+              title
+              slug
+              url
+              body
+              date
+              thumbnail {
+                url
+              }
+            }
+          }
+        `
+      )
+
+      const exp01 = Object.keys(works).map(
+        (contact) => '/' + works[contact].slug
+      )
+
+      const array = [exp01]
+
+      const flattened = array.reduce(
+        (accumulator, currentValue) => accumulator.concat(currentValue),
+        []
+      )
+
+      return flattened
+    },
   },
 
   markdownit: {
@@ -128,6 +162,7 @@ export default {
     BIRTHDAY: process.env.BIRTHDAY,
     DATE_FORMAT: process.env.DATE_FORMAT,
     GA_TOKEN: process.env.GA_TOKEN,
+    CMS_URL: process.env.CMS_URL,
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

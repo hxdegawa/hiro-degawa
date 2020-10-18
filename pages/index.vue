@@ -1,15 +1,15 @@
 <template lang="pug">
   .top
     .top__column
-      .top__column__text
-        .top__column__text__name
+      .top__column__profile
+        .top__column__profile__name
           h2 出川 大和
           h3 Hiro Degawa
           p {{ $moment().diff(new Date(birthday), 'years') }}歳。
           p デザインとプログラミングをしています。
           p ミニマルで抽象性の高いデザインが好きです。
 
-        .top__column__text__sns
+        .top__column__profile__sns
           a(href="https://twitter.com/HiroDegawa" target="_blank")
             img(src="~assets/images/twitter.svg")
           a(href="https://www.instagram.com/hxdegawa/" target="_blank")
@@ -21,11 +21,18 @@
           a(href="https://www.wantedly.com/users/24614872" target="_blank")
             img(src="~assets/images/wantedly.svg")
 
-      .top__column__works
-        h4 作品
-        .top__column__works__cards
-          nuxt-link.top__column__works__cards__item(v-for="(work, key) in works" :key="key" :to="{name: 'work', params: {work: work.slug}}")
-            img(:src="getThumbnail(work.thumbnail)").top__column__works__cards__item__thumbnail
+      .top__column__items
+        .top__column__items__works
+          h4 作品
+          .top__column__items__works__cards
+            nuxt-link(v-for="(work, key) in works" :key="key" :to="{name: 'work-work', params: {work: work.slug}}").top__column__items__works__cards__item
+              img(:src="getThumbnail(work.thumbnail)").top__column__items__works__cards__item__thumbnail
+
+        .top__column__items__blogs
+          h4 手帖
+          .top__column__items__blogs__cards
+            nuxt-link(v-for="(blog, key) in blogs" :key="key" :to="{name: 'blog-blog', params: {blog: blog.slug}}").top__column__items__blogs__cards__item
+              p.top__column__items__blogs__cards__item__title {{ blog.title }}
         
 </template>
 
@@ -37,7 +44,7 @@ import { gql } from 'graphql-request'
 export default class IndexPage extends Vue {
   async asyncData(ctx: any) {
     try {
-      const { works } = await ctx.$graphcms.request(
+      const { works, blogs } = await ctx.$graphcms.request(
         gql`
           {
             works(orderBy: date_DESC) {
@@ -50,11 +57,21 @@ export default class IndexPage extends Vue {
                 url
               }
             }
+
+            blogs(orderBy: date_DESC) {
+              title
+              slug
+              body
+              date
+              thumbnail {
+                url
+              }
+            }
           }
         `
       )
 
-      return { works }
+      return { works, blogs }
     } catch (error) {
       console.error(error.code)
     }
@@ -89,7 +106,7 @@ export default class IndexPage extends Vue {
       grid-template-columns: repeat(1, 1fr);
     }
 
-    &__works {
+    &__items {
       padding: 40px;
 
       @media screen and (max-width: $width-tablet-small) {
@@ -101,30 +118,49 @@ export default class IndexPage extends Vue {
         margin-bottom: 40px;
       }
 
-      &__cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
+      &__works {
+        &__cards {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+          margin-bottom: 40px;
 
-        @media screen and (max-width: $width-pc-small) {
-          grid-template-columns: repeat(2, 1fr);
+          @media screen and (max-width: $width-pc-small) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          @media screen and (max-width: $width-tablet-small) {
+            grid-template-columns: repeat(1, 1fr);
+          }
+
+          &__item {
+            &__thumbnail {
+              object-fit: cover;
+              vertical-align: top;
+              width: 100%;
+            }
+          }
         }
+      }
 
-        @media screen and (max-width: $width-tablet-small) {
-          grid-template-columns: repeat(1, 1fr);
-        }
+      &__blogs {
+        &__cards {
+          &__item {
+            display: block;
+            padding: 10px 20px;
+            background-color: $color-white;
 
-        &__item {
-          &__thumbnail {
-            object-fit: cover;
-            vertical-align: top;
-            width: 100%;
+            &__title {
+              font-size: 12px;
+              line-height: 40px;
+              font-weight: normal;
+            }
           }
         }
       }
     }
 
-    &__text {
+    &__profile {
       padding: 40px;
 
       @media screen and (max-width: $width-tablet-small) {
