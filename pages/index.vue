@@ -11,15 +11,22 @@
 
         .top__column__profile__sns
           a(href="https://twitter.com/HiroDegawa" target="_blank")
-            img(src="~assets/images/twitter.svg")
+            img(src="~/assets/images/twitter.svg")
           a(href="https://www.instagram.com/hxdegawa/" target="_blank")
-            img(src="~assets/images/instagram.svg")
+            img(src="~/assets/images/instagram.svg")
           a(href="https://www.facebook.com/hxdegawa" target="_blank")
-            img(src="~assets/images/facebook.svg")
+            img(src="~/assets/images/facebook.svg")
+          a(href="https://github.com/hxdegawa" target="_blank")
+            img(src="~/assets/images/github.svg")
+          a(href="https://www.behance.net/hiro-degawa" target="_blank")
+            img(src="~/assets/images/behance.svg")
           a(href="https://www.linkedin.com/in/hirokazu-degawa/" target="_blank")
-            img(src="~assets/images/linkedin.svg")
+            img(src="~/assets/images/linkedin.svg")
           a(href="https://www.wantedly.com/users/24614872" target="_blank")
-            img(src="~assets/images/wantedly.svg")
+            img(src="~/assets/images/wantedly.svg")
+
+        .top__column__profile__offer
+          nuxt-link.top__column__profile__offer__link(:to="{name: 'offer'}") 参考価格・ご依頼
 
       .top__column__items
         .top__column__items__works
@@ -29,11 +36,12 @@
               img(:src="getThumbnail(work.thumbnail)").top__column__items__works__cards__item__thumbnail
 
         .top__column__items__blogs
-          h4 手帖
+          h4 美術探訪記
           .top__column__items__blogs__cards
             nuxt-link(v-for="(blog, key) in blogs" :key="key" :to="{name: 'blog-blog', params: {blog: blog.slug}}").top__column__items__blogs__cards__item
               p.top__column__items__blogs__cards__item__title {{ blog.title }}
-        
+              span.top__column__items__blogs__cards__item__date {{ $moment(blog.date).format(dateFormat) }}
+
 </template>
 
 <script lang="ts">
@@ -81,6 +89,10 @@ export default class IndexPage extends Vue {
     return process.env.BIRTHDAY
   }
 
+  get dateFormat() {
+    return process.env.DATE_FORMAT
+  }
+
   getThumbnail(img: any) {
     return img?.url ?? require('~/assets/images/no-image.svg')
   }
@@ -123,7 +135,7 @@ export default class IndexPage extends Vue {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 30px;
-          margin-bottom: 40px;
+          margin-bottom: 60px;
 
           @media screen and (max-width: $width-pc-small) {
             grid-template-columns: repeat(2, 1fr);
@@ -134,6 +146,28 @@ export default class IndexPage extends Vue {
           }
 
           &__item {
+            position: relative;
+
+            &::before {
+              content: '';
+              position: absolute;
+              height: 100%;
+              width: 100%;
+              background-color: transparent;
+              transform: scale(0.9) skewX(-3deg);
+              border: solid 1px $color-lightgray;
+              opacity: 0;
+              pointer-events: none;
+              transition: transform 0.2s ease, opacity 0.2s ease;
+            }
+
+            &:hover {
+              &::before {
+                transform: scale(1) skewX(0deg);
+                opacity: 1;
+              }
+            }
+
             &__thumbnail {
               object-fit: cover;
               vertical-align: top;
@@ -145,15 +179,41 @@ export default class IndexPage extends Vue {
 
       &__blogs {
         &__cards {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+
+          @media screen and (max-width: $width-tablet-small) {
+            grid-template-columns: repeat(1, 1fr);
+          }
+
           &__item {
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 10px 20px;
             background-color: $color-white;
+
+            @media screen and (max-width: $width-tablet-small) {
+              justify-content: flex-d;
+              flex-direction: column;
+              align-items: flex-start;
+
+              &__date {
+                line-height: 30px;
+              }
+            }
 
             &__title {
               font-size: 12px;
               line-height: 40px;
               font-weight: normal;
+            }
+
+            &__date {
+              font-size: 10px;
+              font-weight: normal;
+              color: $color-lightgray;
             }
           }
         }
@@ -197,10 +257,10 @@ export default class IndexPage extends Vue {
       }
 
       &__sns {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        display: flex;
+        justify-content: space-between;
         max-width: 300px;
-        gap: 20px;
+        margin-bottom: 30px;
 
         a {
           display: flex;
@@ -216,6 +276,25 @@ export default class IndexPage extends Vue {
           img {
             object-fit: contain;
             width: 24px;
+          }
+        }
+      }
+
+      &__offer {
+        &__link {
+          line-height: 30px;
+          max-width: 300px;
+          border: solid 1px $color-black;
+          color: $color-black;
+          opacity: 0.4;
+          display: block;
+          font-size: 12px;
+          font-weight: normal;
+          padding: 5px 10px;
+          transition: opacity 0.2s ease;
+
+          &:hover {
+            opacity: 1;
           }
         }
       }

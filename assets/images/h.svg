@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <clipPath id="clip-iPhone_XR_XS_Max_11_4">
+      <rect width="500" height="500"/>
+    </clipPath>
+  </defs>
+  <g id="iPhone_XR_XS_Max_11_4" data-name="iPhone XR/XS Max/11 – 4" clip-path="url(#clip-iPhone_XR_XS_Max_11_4)">
+    <rect width="500" height="500" fill="#fff"/>
+    <g id="グループ_48" data-name="グループ 48" transform="translate(-7 79)">
+      <path id="パス_55" data-name="パス 55" d="M153.9,91h-36V22.6h-72V91H9.9V-77h36V-9.8h72V-77h36Z" transform="translate(175.1 128)"/>
+      <rect id="長方形_16" data-name="長方形 16" width="144" height="36" transform="translate(185 255)"/>
+    </g>
+  </g>
+</svg>
