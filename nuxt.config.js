@@ -101,11 +101,22 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/sentry',
     // https://go.nuxtjs.dev/pwa
     // '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
   ],
+
+  sentry: {
+    dsn: process.env.SENTRY_DSN,
+    // Additional Module Options go here
+    // https://sentry.nuxtjs.org/sentry/options
+    config: {
+      // Add native Sentry config here
+      // https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
+    },
+  },
 
   sitemap: {
     path: '/sitemap.xml',
