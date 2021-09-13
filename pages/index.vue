@@ -24,10 +24,7 @@
             img(src="~/assets/images/linkedin.svg")
           a(href="https://www.wantedly.com/users/24614872" target="_blank")
             img(src="~/assets/images/wantedly.svg")
-
-        .top__column__profile__offer
-          nuxt-link.top__column__profile__offer__link(:to="{name: 'offer'}") 参考価格・ご依頼
-
+        
       .top__column__items
         .top__column__items__works
           h4 作品
@@ -36,7 +33,7 @@
               img(:src="getThumbnail(work.thumbnail)").top__column__items__works__cards__item__thumbnail
 
         .top__column__items__blogs
-          h4 美術探訪記
+          h4 日記
           .top__column__items__blogs__cards
             nuxt-link(v-for="(blog, key) in blogs" :key="key" :to="{name: 'blog-blog', params: {blog: blog.slug}}").top__column__items__blogs__cards__item
               p.top__column__items__blogs__cards__item__title {{ blog.title }}
@@ -101,9 +98,7 @@ export default class IndexPage extends Vue {
 
 <style lang="scss" scoped>
 .top {
-  max-width: $width-pc-small;
-  margin: 0 auto;
-  background-color: $color-purewhite;
+  @include page-base;
 
   &__column {
     display: grid;
@@ -147,31 +142,14 @@ export default class IndexPage extends Vue {
 
           &__item {
             position: relative;
-
-            &::before {
-              content: '';
-              position: absolute;
-              height: 100%;
-              width: 100%;
-              background-color: transparent;
-              transform: scale(0.9) skewX(-3deg);
-              border: solid 1px $color-lightgray;
-              opacity: 0;
-              pointer-events: none;
-              transition: transform 0.2s ease, opacity 0.2s ease;
-            }
-
-            &:hover {
-              &::before {
-                transform: scale(1) skewX(0deg);
-                opacity: 1;
-              }
-            }
+            height: 160px;
+            overflow: hidden;
 
             &__thumbnail {
               object-fit: cover;
               vertical-align: top;
               width: 100%;
+              height: 100%;
             }
           }
         }
@@ -276,25 +254,6 @@ export default class IndexPage extends Vue {
           img {
             object-fit: contain;
             width: 24px;
-          }
-        }
-      }
-
-      &__offer {
-        &__link {
-          line-height: 30px;
-          max-width: 300px;
-          border: solid 1px $color-black;
-          color: $color-black;
-          opacity: 0.4;
-          display: block;
-          font-size: 12px;
-          font-weight: normal;
-          padding: 5px 10px;
-          transition: opacity 0.2s ease;
-
-          &:hover {
-            opacity: 1;
           }
         }
       }

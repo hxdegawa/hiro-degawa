@@ -56,3 +56,14 @@ a {
 .page-leave-active {
   opacity: 0;
 }
+
+@mixin page-base {
+  max-width: $width-pc-small;
+  margin: 0 auto;
+  background-color: $color-purewhite;
+
+  @media screen and (max-width: $width-tablet-small) {
+    min-height: calc(var(--vh, 1vh) * 100 - 60px);
+    padding: 10px;
+  }
+}

@@ -25,7 +25,7 @@ export default class DefaultLayout extends Vue {
   padding: 60px 40px;
 
   @media screen and (max-width: $width-tablet-small) {
-    padding: 30px;
+    padding: 10px;
   }
 }
 </style>
