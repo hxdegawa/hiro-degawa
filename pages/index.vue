@@ -5,7 +5,7 @@
         .top__column__profile__name
           h2 出川 大和
           h3 Hiro Degawa
-          p {{ $moment().diff(new Date(birthday), 'years') }}歳。
+          p {{ $moment(new Date()).diff(new Date(birthday), 'years') }}歳。
           p デザインとプログラミングをしています。
           p ミニマルで抽象性の高いデザインが好きです。
 
