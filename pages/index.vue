@@ -42,13 +42,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Provide } from 'nuxt-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator'
 import { gql } from 'graphql-request'
 
 @Component({})
 export default class IndexPage extends Vue {
   async asyncData(ctx: any) {
     try {
+      const birthday = ctx.env.BIRTHDAY
       const { works, blogs } = await ctx.$graphcms.request(
         gql`
           {
@@ -76,14 +77,10 @@ export default class IndexPage extends Vue {
         `
       )
 
-      return { works, blogs }
+      return { works, blogs, birthday }
     } catch (error) {
       console.error(error.code)
     }
-  }
-
-  get birthday() {
-    return process.env.BIRTHDAY
   }
 
   get dateFormat() {
