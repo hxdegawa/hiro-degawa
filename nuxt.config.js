@@ -116,6 +116,9 @@ export default {
       // Add native Sentry config here
       // https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
     },
+    tracing: {
+      tracesSampleRate: 1.0,
+    }
   },
 
   sitemap: {

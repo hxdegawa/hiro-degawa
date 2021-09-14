@@ -23,7 +23,7 @@ export default class NotFoundPage extends Vue {
 
 <style lang="scss" scoped>
 .not-found {
-  min-height: calc(var(--vh, 1vh) * 100 - 120px);
+  min-height: calc(var(--vh, 1vh) * 100 - 210px);
   display: flex;
   justify-content: center;
   align-items: center;

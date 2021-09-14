@@ -79,7 +79,7 @@ export default class IndexPage extends Vue {
 
       return { works, blogs, birthday }
     } catch (error) {
-      console.error(error.code)
+      ctx.$sentry.captureException(error)
     }
   }
 

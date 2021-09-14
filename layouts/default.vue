@@ -1,12 +1,18 @@
 <template lang="pug">
   .container
+    global-header
     nuxt
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
+import GlobalHeader from '~/components/global/Header.vue'
 
-@Component({})
+@Component({
+  components: {
+    GlobalHeader
+  }
+})
 export default class DefaultLayout extends Vue {
   mounted() {
     let vh: number = window.innerHeight * 0.01
