@@ -100,6 +100,7 @@ export default class WorkPage extends Vue {
       &__title {
         font-size: 14px;
         margin-bottom: 40px;
+        color: $color-black;
       }
 
       &__thumbnail {
@@ -146,6 +147,7 @@ export default class WorkPage extends Vue {
       &__title {
         font-size: 14px;
         margin-bottom: 40px;
+        color: $color-black;
       }
     }
   }

@@ -1,15 +1,15 @@
-$color-purewhite: #fff;
-$color-white: #fafafa;
-$color-pureblack: #000;
-$color-darkblack: #010101;
-$color-deepblack: #111;
-$color-black: #212121;
-$color-darkgray: #303030;
-$color-gray: #555;
-$color-brightgray: #f1f1f1;
-$color-lightgray: #cecece;
-$color-purered: #f00;
-$color-red: #c00;
+$color-purewhite: var(--colorPureWhite, #fff);
+$color-white: var(--colorWhite, #fafafa);
+$color-pureblack: var(--colorPureBlack, #000);
+$color-darkblack: var(--colorDarkBlack, #010101);
+$color-deepblack: var(--colorDarkBlack, #111);
+$color-black: var(--colorBlack, #212121);
+$color-darkgray: var(--colorDarkGray, #303030);
+$color-gray: var(--colorGray, #555);
+$color-brightgray: var(--colorBrightGray, #f1f1f1);
+$color-lightgray: var(--colorLightGray, #cecece);
+$color-purered: var(--colorPureRed, #f00);
+$color-red: var(--colorRed, #c00);
 
 $width-pc-large: 1440px;
 $width-pc-small: 1280px;

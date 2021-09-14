@@ -30,7 +30,7 @@
           h4 作品
           .top__column__items__works__cards
             nuxt-link(v-for="(work, key) in works" :key="key" :to="{name: 'work-work', params: {work: work.slug}}").top__column__items__works__cards__item
-              img(:src="getThumbnail(work.thumbnail)").top__column__items__works__cards__item__thumbnail
+              img(:src="getThumbnail(work.thumbnail)").top__column__items__works__cards__item__thumbnail.thumbnail
 
         .top__column__items__blogs
           h4 日記
@@ -133,14 +133,14 @@ export default class IndexPage extends Vue {
             grid-template-columns: repeat(2, 1fr);
           }
 
-          @media screen and (max-width: $width-tablet-small) {
-            grid-template-columns: repeat(1, 1fr);
-          }
-
           &__item {
             position: relative;
             height: 160px;
             overflow: hidden;
+
+            @media screen and (max-width: $width-tablet-small) {
+              height: 100px;
+            }
 
             &__thumbnail {
               object-fit: cover;
