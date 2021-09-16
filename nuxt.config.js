@@ -87,6 +87,7 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/moment',
     '@nuxtjs/color-mode',
+    '@nuxtjs/pwa',
   ],
 
   styleResources: {
