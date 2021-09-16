@@ -3,8 +3,8 @@
     transition(name="general")
       .content(v-show="isMenuOpen")
         ul.content-list
-          ol.content-item(:class="{active: routeName === 'work'}"): nuxt-link(to="work") 作品
-          ol.content-item(:class="{active: routeName === 'blog'}"): nuxt-link(to="blog") 日記
+          ol.content-item(:class="{active: routeName === 'work'}"): nuxt-link(to="/work") 作品
+          ol.content-item(:class="{active: routeName === 'blog'}"): nuxt-link(to="/blog") 日記
           //- ol.content-item(:class="{active: routeName === 'price'}"): nuxt-link(to="price") ご依頼
         .darkmode(@click="toggleDarkMode")
           div
