@@ -35,7 +35,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.5.3",
     "graphql-request": "^3.5.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "nuxt": "^2.14.6",
     "nuxt-property-decorator": "^2.8.8",
     "pug": "^3.0.0",
