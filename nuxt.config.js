@@ -166,11 +166,11 @@ export default {
     injected: true,
   },
 
-  // pwa: {
-  //   icon: {
-  //     source: '~/icon.png',
-  //   },
-  // },
+  pwa: {
+    icon: {
+      source: '~/static/icon.png',
+    },
+  },
 
   env: {
     BIRTHDAY: process.env.BIRTHDAY,
