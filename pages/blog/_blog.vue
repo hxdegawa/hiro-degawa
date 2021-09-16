@@ -1,19 +1,19 @@
 <template lang="pug">
   .blog
-    .blog__column
-      .blog__column__meta
-        h4.blog__column__meta__title 概要
-        img.blog__column__meta__thumbnail(:src="getThumbnail(blog.thumbnail)")
+    .blog-column
+      .meta
+        h4.meta-title 概要
+        img.meta-thumbnail(:src="getThumbnail(blog.thumbnail)")
 
-        h5.blog__column__meta__heading タイトル
-        p.blog__column__meta__content {{blog.title}}
+        h5.meta-heading タイトル
+        p.meta-content {{blog.title}}
 
-        h5.blog__column__meta__heading 日付
-        p.blog__column__meta__content {{getDate(blog.date)}}
+        h5.meta-heading 日付
+        p.meta-content {{getDate(blog.date)}}
 
-      .blog__column__body
-        .blog__column__body__title 詳細
-        .blog__column__body__md.markdown(v-html="$md.render(blog.body)")
+      .body
+        .body-title 詳細
+        .body-md.markdown(v-html="$md.render(blog.body)")
       
 </template>
 
@@ -68,7 +68,7 @@ export default class BlogPage extends Vue {
   margin: 0 auto;
   background-color: $color-purewhite;
 
-  &__column {
+  &-column {
     display: grid;
     grid-template-columns: 4fr 6fr;
 
@@ -80,31 +80,31 @@ export default class BlogPage extends Vue {
       grid-template-columns: repeat(1, 1fr);
     }
 
-    &__meta {
+    .meta {
       padding: 40px;
 
       @media screen and (max-width: $width-tablet-small) {
         padding: 20px;
       }
 
-      &__title {
+      &-title {
         font-size: 14px;
         margin-bottom: 40px;
       }
 
-      &__thumbnail {
+      &-thumbnail {
         object-fit: contain;
         width: 100%;
         margin-bottom: 40px;
       }
 
-      &__heading {
+      &-heading {
         font-size: 12px;
         color: $color-gray;
         margin-bottom: 10px;
       }
 
-      &__content {
+      &-content {
         font-size: 13px;
         color: $color-black;
         font-weight: normal;
@@ -126,14 +126,14 @@ export default class BlogPage extends Vue {
       }
     }
 
-    &__body {
+    .body {
       padding: 40px;
 
       @media screen and (max-width: $width-tablet-small) {
         padding: 20px;
       }
 
-      &__title {
+      &-title {
         font-size: 14px;
         margin-bottom: 40px;
         color: $color-black;

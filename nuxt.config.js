@@ -76,7 +76,7 @@ export default {
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -118,7 +118,7 @@ export default {
     },
     tracing: {
       tracesSampleRate: 1.0,
-    }
+    },
   },
 
   sitemap: {
@@ -177,6 +177,7 @@ export default {
     DATE_FORMAT: process.env.DATE_FORMAT,
     GA_TOKEN: process.env.GA_TOKEN,
     CMS_URL: process.env.CMS_URL,
+    CASTLE_APP_ID: process.env.CASTLE_APP_ID,
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -194,7 +195,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    extend: function (config) {
+    extend: (config) => {
       config.node = {
         fs: 'empty',
       }

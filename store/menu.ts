@@ -7,7 +7,7 @@ export const state = (): State => ({
 })
 
 export const getters = {
-  menuStatus: (state: State) => state.isMenuOpen,
+  isMenuOpen: (state: State) => state.isMenuOpen,
 }
 
 export const mutations = {

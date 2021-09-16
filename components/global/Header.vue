@@ -1,45 +1,32 @@
 <template lang="pug">
   .header
     .header-prev(@click="pageBack")
-      transition(name="page")
-        i.material-icons(v-show="hasHistory") arrow_back
+      transition(name="general")
+        i.material-icons arrow_back
     
     nuxt-link.header-symbol(to="/")
-      img.header-img(src="~/assets/images/h.svg", alt="logo")
+      img.header-img(src="~/assets/images/h.svg", alt="logo" :class="{invert: $colorMode.value === 'dark'}")
     
     .header-menu(@click="triggerMenu")
-      i.material-icons(v-show="hasHistory") menu
+      i.material-icons {{ isMenuOpen ? 'close' : 'menu' }}
       
 </template>
 
 <script lang="ts">
-import { Vue, Component, Provide, Watch } from 'nuxt-property-decorator'
-import { Mutation } from 'vuex-class'
+import { Vue, Component, Provide } from 'nuxt-property-decorator'
+import { Mutation, Getter } from 'vuex-class'
 
 @Component({})
 export default class GlobalHeader extends Vue {
   @Provide() hasHistory: boolean = false
-
-  @Watch('$route', { immediate: false, deep: true })
-  watchPath() {
-    this.checkPath()
-  }
+  @Getter('menu/isMenuOpen') isMenuOpen!: boolean
 
   pageBack() {
     window.history.back()
-    this.checkPath()
-  }
-
-  checkPath() {
-    return (this.hasHistory = window.history.length > 1 ? true : false)
   }
 
   triggerMenu() {
     this.toggleMenu()
-  }
-
-  mounted() {
-    this.checkPath()
   }
 
   @Mutation('menu/toggleMenu') toggleMenu!: () => void
@@ -97,16 +84,11 @@ export default class GlobalHeader extends Vue {
     width: 50px;
 
     .header-img {
-      transition: 0.2s ease;
-      transform: scale(1);
       object-fit: contain;
       height: 100%;
-      filter: drop-shadow(1px 1px 0 transparentize(#fff, 0.4));
-    }
 
-    &:hover {
-      .header-img {
-        transform: scale(1.1);
+      &.invert {
+        filter: invert(1);
       }
     }
   }
