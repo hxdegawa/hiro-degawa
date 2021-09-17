@@ -1,9 +1,12 @@
 <template lang="pug">
   .price
+    h1 ご依頼
     .price-column
       .plan(v-for="(plan, key) in prices" :key="key")
         h2.plan-name {{ plan.name }}
-        p.plan-desc.markdown(v-html="plan.description.html")
+        p.plan-price {{ parsePrice(plan.price) }}
+        client-only
+          p.plan-desc.markdown(v-html="$md.render(plan.description)")
 </template>
 
 <script lang="ts">
@@ -20,9 +23,8 @@ export default class PricePage extends Vue {
           {
             prices {
               name
-              description {
-                html
-              }
+              price
+              description
             }
           }
         `
@@ -31,6 +33,14 @@ export default class PricePage extends Vue {
       return { prices }
     } catch (error) {
       ctx.$sentry.captureException(error)
+    }
+  }
+
+  parsePrice(price: string) {
+    if (isNaN(parseInt(price, 10))) {
+      return price
+    } else {
+      return parseInt(price, 10).toLocaleString('ja', { useGrouping: true })
     }
   }
 }
@@ -42,16 +52,38 @@ export default class PricePage extends Vue {
 
   padding: 40px;
 
+  h1 {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
   &-column {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 80px;
 
     .plan {
       &-name {
-        font-size: 18px;
+        font-size: 12px;
         font-weight: 700;
-        margin-bottom: 40px;
+        margin-bottom: 10px;
+      }
+
+      &-price {
+        font-size: 10px;
+        font-weight: 400;
+        margin-bottom: 30px;
+        color: $color-gray;
+
+        &::before {
+          content: '¥';
+          margin-right: 0.5em;
+        }
+
+        &::after {
+          content: '~';
+          margin-left: 0.5em;
+        }
       }
 
       &-desc {

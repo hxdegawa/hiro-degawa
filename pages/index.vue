@@ -3,27 +3,15 @@
     .top-column
       .profile
         .profile-bio
-          h2 出川 大和
-          h3 Hiro Degawa
+          h1 出川 大和
+          h2 Hiro Degawa
           p {{ $moment(new Date()).diff(new Date(birthday), 'years') }}歳。
           p デザインとプログラミングをしています。
           p ミニマルで抽象性の高いデザインが好きです。
 
         .profile-sns
-          a(href="https://twitter.com/HiroDegawa" target="_blank")
-            img(src="~/assets/images/twitter.svg")
-          a(href="https://www.instagram.com/hxdegawa/" target="_blank")
-            img(src="~/assets/images/instagram.svg")
-          a(href="https://www.facebook.com/hxdegawa" target="_blank")
-            img(src="~/assets/images/facebook.svg")
-          a(href="https://github.com/hxdegawa" target="_blank")
-            img(src="~/assets/images/github.svg")
-          a(href="https://www.behance.net/hiro-degawa" target="_blank")
-            img(src="~/assets/images/behance.svg")
-          a(href="https://www.linkedin.com/in/hirokazu-degawa/" target="_blank")
-            img(src="~/assets/images/linkedin.svg")
-          a(href="https://www.wantedly.com/users/24614872" target="_blank")
-            img(src="~/assets/images/wantedly.svg")
+          a(v-for="(sns, key) in snsList" :key="key" :href="sns.url" target="_blank")
+            img(:src="require(`~/assets/images/${sns.name}.svg`)")
         
       .items
         .items-works
@@ -42,6 +30,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types/app'
 import { gql } from 'graphql-request'
+import sns from '~/lib/sns.json'
 import WorkCard from '~/components/work/WorkCard.vue'
 import BlogCard from '~/components/blog/BlogCard.vue'
 
@@ -91,6 +80,10 @@ export default class IndexPage extends Vue {
       ctx.$sentry.captureException(error)
     }
   }
+
+  get snsList() {
+    return sns
+  }
 }
 </script>
 
@@ -120,19 +113,19 @@ export default class IndexPage extends Vue {
     }
 
     &-bio {
-      h3,
+      h1,
       h2 {
         display: block;
         text-transform: uppercase;
         letter-spacing: 2px;
       }
 
-      h2 {
+      h1 {
         font-size: 14px;
         margin-bottom: 5px;
       }
 
-      h3 {
+      h2 {
         font-size: 12px;
         margin-bottom: 40px;
       }

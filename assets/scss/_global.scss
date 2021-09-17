@@ -34,8 +34,7 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
   margin: unset;
   color: $color-pureblack;
 }
@@ -43,9 +42,10 @@ p {
 ul {
   padding: unset;
   list-style: none;
-  color: $color-pureblack;
 
   li {
+    color: $color-gray;
+
     &::before {
       content: '-';
       font-size: 12px;
@@ -55,6 +55,7 @@ ul {
 }
 
 p {
+  margin: unset;
   font-weight: normal;
   font-size: 0.8rem;
   color: $color-gray;

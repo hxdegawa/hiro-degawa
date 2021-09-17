@@ -5,7 +5,7 @@
         ul.content-list
           ol.content-item(:class="{active: routeName === 'work'}"): nuxt-link(to="/work") 作品
           ol.content-item(:class="{active: routeName === 'blog'}"): nuxt-link(to="/blog") 日記
-          //- ol.content-item(:class="{active: routeName === 'price'}"): nuxt-link(to="price") ご依頼
+          ol.content-item(:class="{active: routeName === 'price'}"): nuxt-link(to="/price") ご依頼
         .darkmode(@click="toggleDarkMode")
           div
             .material-icons.darkmode__icon(v-show="$colorMode.value === 'light'") dark_mode
