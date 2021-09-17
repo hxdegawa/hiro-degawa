@@ -10,8 +10,8 @@
           p ミニマルで抽象性の高いデザインが好きです。
 
         .profile-sns
-          a(v-for="(sns, key) in snsList" :key="key" :href="sns.url" target="_blank")
-            img(:src="require(`~/assets/images/${sns.name}.svg`)")
+          a(v-for="(sns, key) in snsList" :key="key" :href="sns.url" target="_blank" rel="noopener noreferrer")
+            img(:src="require(`~/assets/images/${sns.name}.svg`)" :alt="sns.name")
         
       .items
         .items-works

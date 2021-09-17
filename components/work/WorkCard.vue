@@ -1,6 +1,6 @@
 <template lang="pug">
   nuxt-link(:to="{name: 'work-work', params: {work: work.slug}}").item
-    img(:src="getThumbnail(work.thumbnail)").item-thumbnail.thumbnail
+    img(:src="getThumbnail(work.thumbnail)" :alt="work.title").item-thumbnail.thumbnail
 </template>
 
 <script lang="ts">
