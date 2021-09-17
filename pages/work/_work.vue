@@ -39,10 +39,10 @@ export default class WorkPage extends Vue {
             date
             thumbnail {
               url(
-                  transformation: {
-                    image: { resize: { width: 900, height: 600, fit: clip } }
-                  }
-                )
+                transformation: {
+                  image: { resize: { width: 900, height: 600, fit: clip } }
+                }
+              )
             }
           }
         }
@@ -54,6 +54,7 @@ export default class WorkPage extends Vue {
 
       return { work: works[0] }
     } catch (error) {
+      ctx.$sentry.captureException(error)
       ctx.redirect('/')
     }
   }

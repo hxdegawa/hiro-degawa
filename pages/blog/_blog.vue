@@ -46,6 +46,7 @@ export default class BlogPage extends Vue {
 
       return { blog: blogs[0] }
     } catch (error) {
+      ctx.$sentry.captureException(error)
       ctx.redirect('/')
     }
   }
