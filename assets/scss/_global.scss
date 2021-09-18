@@ -66,6 +66,10 @@ a {
   color: $color-pureblack;
 }
 
+img {
+  font-size: 12px;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.5s ease;
