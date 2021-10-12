@@ -178,7 +178,6 @@ export default {
     DATE_FORMAT: process.env.DATE_FORMAT,
     GA_TOKEN: process.env.GA_TOKEN,
     CMS_URL: process.env.CMS_URL,
-    CASTLE_APP_ID: process.env.CASTLE_APP_ID,
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
