@@ -39,7 +39,7 @@
     "core-js": "^3.17.3",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.3",
-    "graphql-request": "^3.5.0",
+    "graphql-request": "^4.3.0",
     "node-sass": "^6.0.1",
     "nuxt": "^2.15.8",
     "nuxt-lazy-load": "^1.2.7",
