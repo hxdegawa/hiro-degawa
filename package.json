@@ -36,7 +36,7 @@
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/style-resources": "^1.2.1",
     "@types/moment": "^2.13.0",
-    "core-js": "^3.17.3",
+    "core-js": "^3.26.0",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.3",
     "graphql-request": "^3.5.0",
